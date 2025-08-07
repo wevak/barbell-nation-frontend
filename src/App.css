@@ -1,8 +1,390 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
 }
 
+body {
+  display: flex;
+  background-color: #f4f1f5;
+  height: 100vh;
+}
 
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  background-color: #0a0b50;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+}
+
+.admin-info {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.admin-info .avatar {
+  width: 60px;
+  height: 60px;
+  background-color: white;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+}
+
+.menu a {
+  display: block;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.menu a.active,
+.menu a:hover {
+  background-color: #dedede;
+  color: #0a0b50;
+}
+
+.main-content {
+  flex: 1;
+  padding: 30px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  height: 50px;
+}
+
+.feedback {
+  margin-right: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.notification {
+  width: 20px;
+  height: 20px;
+  background-color: #0a0b50;
+  border-radius: 50%;
+}
+
+.register-section h2 {
+  font-size: 28px;
+  margin: 30px 0 20px;
+}
+
+.register-section h2 span {
+  color: goldenrod;
+  font-weight: bold;
+  display: block;
+}
+
+.register-form {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.form-row label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.form-row label:last-child {
+  margin-right: 0;
+}
+
+input {
+  margin-top: 8px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+button.primary {
+  background-color: #0a0b50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button.secondary {
+  background-color: white;
+  color: #0a0b50;
+  border: 2px solid #0a0b50;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* login form */
+.login-body {
+  background-color: #f3f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-container {
+  display: flex;
+  max-width: 900px;
+  width: 90%;
+  background: #f3f1f1;
+  border: 1px solid #ccc;
+  padding: 30px 50px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-box {
+  flex: 1;
+}
+
+.login-form {
+  max-width: 300px;
+}
+
+.login-form h2 {
+  color: #1d1d78;
+  margin-bottom: 20px;
+}
+
+.login-form label {
+  display: block;
+  margin: 10px 0 5px;
+  color: #333;
+  font-weight: 500;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.options a.forgot {
+  color: #555;
+  text-decoration: none;
+}
+
+.login-form button {
+  background-color: #1d1d78;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.logo-box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-box img {
+  width: 280px;
+  max-width: 100%;
+}
+
+/* packages add form */
+/* Form */
+.form-section {
+  background-color: #1e1b4b;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  border: 2px solid #3b82f6;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.form-group {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  flex-basis: 100%;
+}
+
+.form-group input {
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: none;
+  color: #111827;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.save {
+  background-color: #facc15;
+  color: black;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* signup css */
+.signup-body {
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  padding-top: 200px;
+}
+
+.signup-container {
+  display: flex;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-box {
+  width: 300px;
+  margin-right: 50px;
+}
+
+h2 {
+  color: #2d2e83;
+  margin-bottom: 20px;
+}
+select {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.register-btn {
+  background-color: #2d2e83;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.register-btn:hover {
+  background-color: #1f1f5c;
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.terms input {
+  margin-right: 8px;
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+}
+
+.logo-box img {
+  max-width: 250px;
+  height: auto;
+}

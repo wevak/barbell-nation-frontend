@@ -25,35 +25,43 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <h2>Login Page</h2>
-      <form>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            // className="form-control"
-            className="mb-3"
-            id="emailInput"
-            placeholder="email@example.com"
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            className="mb-3"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary" onClick={handleLogin}>
-          Login
-        </button>
-      </form>
-      <Outlet />
+    <div
+      className="d-flex justify-content-center align-items-center"
+      style={{ height: "100vh", width: "100vw" }}
+    >
+      <div className="justify-content-center">
+        <h2>Login Page</h2>
+        <form>
+          <div>
+            <label>Email:</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="mb-3"
+              id="emailInput"
+              placeholder="email@example.com"
+            />
+          </div>
+          <div>
+            <label>Password:</label>
+            <input
+              type="password"
+              className="mb-3"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            onClick={handleLogin}
+          >
+            Login
+          </button>
+        </form>
+        <Outlet />
+      </div>
     </div>
   );
 }

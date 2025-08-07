@@ -1,26 +1,35 @@
 import React, { useEffect } from "react";
-import "./App.css";
-import { Outlet, Route, Routes, Navigate, useNavigate } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import HomePage from "./components/HomePage";
-import { useSelector } from "react-redux";
 import PrivateRoutes from "./components/PrivateRoutes";
+import Packages from "./components/Packages";
+import Members from "./components/Members";
+import DashboardLayout from "./components/DashboardLayout";
+import "./App.css";
+import CustomerRegistration from "./components/CustomerRegistration";
+import SignUp from "./components/SignUp";
 
 function App() {
-  const { token } = useSelector((state) => state.auth);
-  // debugger;
 
   return (
     <Routes>
+      <Route path="/home" index element={<HomePage />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} />
       <Route element={<PrivateRoutes />}>
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/" element={<DashboardLayout />}>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="packages" element={<Packages />} />
+          <Route path="members" element={<Members />} />
+          <Route path="customer-registration" element={<CustomerRegistration />} />
+        </Route>
+
         {/* Add other protected routes here */}
       </Route>
       {/* Add public routes */}
     </Routes>
-    // </Router>
   );
 }
 
