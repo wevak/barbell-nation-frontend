@@ -48,6 +48,11 @@ export default function DashboardLayout() {
                   Registration
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link to="/inventory" className="nav-link">
+                  Inventory
+                </Link>
+              </li>
             </ul>
             {/* <ul>
             <li><Link to="/dashboard">Dashboard</Link></li>

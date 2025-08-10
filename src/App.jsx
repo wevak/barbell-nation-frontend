@@ -10,6 +10,7 @@ import DashboardLayout from "./components/DashboardLayout";
 import "./App.css";
 import CustomerRegistration from "./components/CustomerRegistration";
 import SignUp from "./components/SignUp";
+import Inventory from "./components/Inventory";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="packages" element={<Packages />} />
           <Route path="members" element={<Members />} />
           <Route path="customer-registration" element={<CustomerRegistration />} />
+          <Route path="inventory" element={<Inventory />} />
         </Route>
 
         {/* Add other protected routes here */}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import logo from "../assets/FitnessLogo.png";
 import { ownerRegisterAsync } from "../redux/actionCreators/authActionCreator";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function SignUp() {
   const [name, setName] = useState("");
@@ -16,7 +17,17 @@ export default function SignUp() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    await dispatch(ownerRegisterAsync({ name, email, phone, gender, type, gymName, password }));
+    await dispatch(
+      ownerRegisterAsync({
+        name,
+        email,
+        phone,
+        gender,
+        type,
+        gymName,
+        password,
+      })
+    );
   };
 
   return (
@@ -107,6 +118,9 @@ export default function SignUp() {
             >
               Register
             </button>
+            <Link to="/login" className="mt-3 align-self-center">
+              Already Registered, please login
+            </Link>
           </form>
         </div>
 

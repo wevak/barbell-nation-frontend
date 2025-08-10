@@ -37,7 +37,7 @@ export const userLoginAsync = (email, password) => {
       );
       dispatch(userLoginSuccess(data));
     } catch (error) {
-      dispatch(userLoginFailure(error.response.data.message));
+      dispatch(userLoginFailure(error?.response?.data?.message));
     }
   };
 };
