@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { userLoginAsync } from "../redux/actionCreators/authActionCreator";
 
 export default function Login() {
@@ -59,6 +59,9 @@ export default function Login() {
           >
             Login
           </button>
+          <Link to="/signup" className="mt-3 align-self-center">
+            Register
+          </Link>
         </form>
         <Outlet />
       </div>
