@@ -6,7 +6,7 @@ const initialState = {
 
 export const customer_reducer = (state = initialState, action) => {
   switch (action.type) {
-    //User Login
+  
     case "CUSTOMER_REGISTER_REQUEST":
       return {
         ...state,
@@ -25,7 +25,6 @@ export const customer_reducer = (state = initialState, action) => {
         ...state,
         fetching: false,
         error: ""
-        // authUser: {},
       };
 
     default:

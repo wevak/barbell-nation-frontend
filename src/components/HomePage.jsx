@@ -1,140 +1,368 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import { useDispatch } from "react-redux";
+import { customerRegisterAsync } from "../redux/actionCreators/customerActionCreator";
 
 export default function HomePage() {
+  // State for BMI Calculator
+  const [height, setHeight] = useState('');
+  const [weight, setWeight] = useState('');
+  const [bmi, setBmi] = useState(null);
+  const [bmiCategory, setBmiCategory] = useState('');
+
+  // State for Customer Registration Form
+  const [name, setName] = useState("");
+  const [gender, setGender] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [packageId, setPackageId] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false); // To disable button
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate(); // Hook for navigation
+
+  // BMI handler remains the same
+  const handleBmiSubmit = (e) => {
+    e.preventDefault();
+    const heightValue = parseFloat(height);
+    const weightValue = parseFloat(weight);
+    if (isNaN(heightValue) || isNaN(weightValue) || heightValue <= 0 || weightValue <= 0) {
+      setBmi('Invalid');
+      setBmiCategory('Please enter valid height and weight.');
+      return;
+    }
+    const heightInMeters = heightValue / 100;
+    const bmiResult = weightValue / (heightInMeters * heightInMeters);
+    setBmi(bmiResult.toFixed(2));
+    let category = '';
+    if (bmiResult < 18.5) category = 'Underweight';
+    else if (bmiResult < 24.9) category = 'Normal weight';
+    else if (bmiResult < 29.9) category = 'Overweight';
+    else category = 'Obesity';
+    setBmiCategory(`Category: ${category}`);
+  };
+
+  // This function now handles the entire flow: order creation -> payment -> registration
+  const handleRegistrationAndPayment = async (e) => {
+    e.preventDefault();
+    if (!packageId || packageId.trim() === "") {
+        alert("Please enter a valid Package/Plan ID.");
+        return;
+    }
+    setIsSubmitting(true);
+
+    try {
+      // Step 1: Call your backend to create a Razorpay order.
+      const response = await fetch('http://localhost:8080/payments/create-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ packageId: Number(packageId) }),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Failed to create payment order: ${errorText}`);
+      }
+
+      const orderDetails = await response.json();
+
+      // Step 2: Configure and open Razorpay checkout.
+      const options = {
+        key: orderDetails.key,
+        amount: orderDetails.amount,
+        currency: orderDetails.currency,
+        name: "Barbell Nation",
+        description: "Membership Payment",
+        order_id: orderDetails.orderId,
+        handler: async function (paymentResponse) {
+          // Step 3: Payment is successful. Now, dispatch to register the user.
+          try {
+            const registrationPayload = {
+              name, email, gender, phone,
+              packageId: Number(packageId),
+              razorpay_payment_id: paymentResponse.razorpay_payment_id,
+              razorpay_order_id: paymentResponse.razorpay_order_id,
+              razorpay_signature: paymentResponse.razorpay_signature,
+            };
+
+            const resultAction = await dispatch(customerRegisterAsync(registrationPayload));
+
+            // **THE FIX: Check for the presence of an error object on the action.**
+            // This is the most reliable way to detect if a thunk succeeded or failed.
+            if (!resultAction.error) {
+              navigate('/payment-success', { state: { amount: orderDetails.amount, transactionId: paymentResponse.razorpay_payment_id } });
+            } else {
+              // This will handle cases where the thunk was rejected
+              const errorMessage = resultAction.payload || 'Payment verification failed on our server. Please contact support.';
+              throw new Error(errorMessage);
+            }
+          } catch (regError) {
+            alert(`Registration Failed After Payment: ${regError.message}`);
+          } finally {
+            setIsSubmitting(false);
+          }
+        },
+        prefill: { name, email, contact: phone },
+        theme: { color: "#3B3486" },
+        modal: {
+            ondismiss: function() {
+                // Re-enable the button if the user closes the payment modal
+                setIsSubmitting(false);
+            }
+        }
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.on('payment.failed', function (failureResponse) {
+        alert(`Payment Failed: ${failureResponse.error.description}`);
+        setIsSubmitting(false);
+      });
+      rzp.open();
+
+    } catch (error) {
+      alert(error.message);
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
-      <header className="navbar">
-        <div className="logo">STAMINA FITNESS CENTRE</div>
-        <nav>
-          <a href="#">About</a>
-          <a href="#">Offers</a>
-          <a href="#">Plans</a>
-          <a href="#">Coaches</a>
-          <a href="#">Register</a>
-          <button className="btn-join">Join Now</button>
+      <header>
+        <nav className="container">
+            <a href="#" className="logo-nav">
+                <img src="https://placehold.co/150x50/3B3486/FFDD00?text=Barbell" alt="Barbell Nation Small Logo" />
+                <span>BARBELL<br />NATION</span>
+            </a>
+            <ul className="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#membership">Membership</a></li>
+                <li><a href="#coaches">Coaches</a></li>
+                <li><a href="#bmi-calculator">BMI Calculator</a></li>
+                <li><a href="#visit">Contact</a></li>
+            </ul>
+            <Link to="/login" className="btn btn-login">Login</Link>
         </nav>
       </header>
 
-      <section className="hero">
-        <div className="hero-content">
-          <h1>
-            Start a better shape of you!
-            <br />
-            <span>Come Join Us!</span>
-          </h1>
-          <button className="learn-btn">Learn More</button>
-        </div>
-      </section>
+      {/* --- Other sections remain the same --- */}
+      <section id="hero">
+            <div className="container hero-content">
+                <div className="hero-text">
+                    <h1>Start a better<br/>shape of you!<br/>Come Join Us!</h1>
+                    <p>Your journey to a healthier, stronger you begins here. We provide the tools, you provide the will.</p>
+                    <a href="#about" className="btn">Learn More</a>
+                </div>
+                <div className="hero-logo">
+                    <img src="https://placehold.co/350x200/FFDD00/3B3486?text=BARBELL+NATION" alt="Barbell Nation Main Logo"/>
+                </div>
+            </div>
+        </section>
 
-      <section className="about">
-        <h2>About STAMINA GYM FOR MAN & WOMAN</h2>
-        <p>
-          Stamina Gym Centre provides proper training to help clients reach
-          their goals. Our gym is equipped with modern facilities and expert
-          trainers to guide you every step of the way.
-        </p>
-      </section>
+        <section id="about">
+            <div className="container about-content">
+                <div className="about-image">
+                    <img src="https://placehold.co/400x450/cccccc/333333?text=Athlete" alt="Man flexing in gym"/>
+                </div>
+                <div className="about-text">
+                    <h2>About<br/>BARBELL NATION GYM</h2>
+                    <p>Barbell Nation Gym provides proper training program that can transform an individual into their best self. We have professional coaches who can guide you to your desired body shape. Beyond the body, we can also provide a nutritional guide that can help your mind and body stay fit.</p>
+                </div>
+            </div>
+        </section>
 
-      <section className="offers">
-        <h3>What we offer</h3>
-        <div className="offer-boxes">
-          <div className="offer">24/7 Access</div>
-          <div className="offer">1-on-1 Coaching</div>
-          <div className="offer">Nutrition Guide</div>
-        </div>
-      </section>
+        <section id="offer">
+             <div className="container">
+                <h2 className="section-title">What we offer</h2>
+                <div className="offer-cards">
+                    <div className="offer-card">
+                        <i className="fa-solid fa-clock"></i>
+                        <h3>24/7</h3>
+                        <p>Access</p>
+                    </div>
+                    <div className="offer-card">
+                        <i className="fa-solid fa-user-group"></i>
+                        <h3>1 on 1</h3>
+                        <p>Training</p>
+                    </div>
+                     <div className="offer-card">
+                        <i className="fa-solid fa-file-alt"></i>
+                        <h3>Nutritional</h3>
+                        <p>Guide</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      <section className="plans">
-        <h3>
-          Our Plan: <span>JOIN OUR MEMBERSHIP</span>
-        </h3>
-        <div className="plan-cards">
-          <div className="plan-card">
-            <h4>7 Days</h4>
-            <p>Weekly Pass</p>
-          </div>
-          <div className="plan-card">
-            <h4>1 Month</h4>
-            <p>Monthly Plan</p>
-          </div>
-          <div className="plan-card">
-            <h4>6 Months</h4>
-            <p>Extended Entry</p>
-          </div>
-          <div className="plan-card">
-            <h4>1 Year</h4>
-            <p>Annual Membership</p>
-          </div>
-        </div>
-      </section>
+        <section id="membership">
+            <div className="container">
+                <h2 className="section-title">JOIN OUR MEMBERSHIP</h2>
+                <p className="sub-title">Our Plan:</p>
+                <div className="plan-cards">
+                    <div className="plan-card weekly">
+                        <i className="fa-solid fa-chess-pawn"></i>
+                        <h3>Weekly Plan</h3>
+                        <span>7 Days</span>
+                    </div>
+                    <div className="plan-card">
+                         <i className="fa-solid fa-chess-knight"></i>
+                        <h3>1 Month</h3>
+                    </div>
+                    <div className="plan-card">
+                         <i className="fa-solid fa-chess-rook"></i>
+                        <h3>6 Months</h3>
+                    </div>
+                    <div className="plan-card">
+                         <i className="fa-solid fa-chess-king"></i>
+                        <h3>1 Year</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      <section className="coaches">
-        <h3>COACHES</h3>
-        <div className="coach-cards">
-          <div className="coach-card">
-            <img src="https://via.placeholder.com/100" alt="Coach John" />
-            <p>Coach John</p>
-          </div>
-          <div className="coach-card">
-            <img src="https://via.placeholder.com/100" alt="Coach Marcel" />
-            <p>Coach Marcel</p>
-          </div>
-          <div className="coach-card">
-            <img src="https://via.placeholder.com/100" alt="Coach Ansel" />
-            <p>Coach Ansel</p>
-          </div>
-        </div>
-      </section>
+        <section id="coaches">
+            <div className="container">
+                <h2 className="section-title">COACHES</h2>
+                <div className="coach-profiles">
+                    <div className="coach-card">
+                        <img src="https://placehold.co/150x150/ffffff/333333?text=Coach" alt="Coach John" />
+                        <h3>Coach John</h3>
+                    </div>
+                    <div className="coach-card">
+                        <img src="https://placehold.co/150x150/ffffff/333333?text=Coach" alt="Coach Jarrell" />
+                        <h3>Coach Jarrell</h3>
+                    </div>
+                    <div className="coach-card">
+                        <img src="https://placehold.co/150x150/ffffff/333333?text=Coach" alt="Coach Anne" />
+                        <h3>Coach Anne</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      <section className="visit">
-        <h3>VISIT OUR GYM</h3>
-        <div className="visit-info">
-          <iframe
-            src="https://maps.google.com/maps?q=bhopal&t=&z=13&ie=UTF8&iwloc=&output=embed"
-            width="100%"
-            height="200"
-            style="border:0;"
-            allowfullscreen
-            loading="lazy"
-          ></iframe>
-          <div className="address">
-            <p>Address: CITY B, GENERAL PATHA VILLAGES AB BARI</p>
-            <p>Phone: 1234567890</p>
-            <p>Email: stamina@gmail.com</p>
-            <p>Follow us:</p>
-            <div className="socials">
-              <a href="#">🐦</a>
-              <a href="#">📘</a>
-              <a href="#">📷</a>
+
+      <section id="bmi-calculator">
+        <div className="container">
+          <h2 className="section-title">Calculate Your BMI</h2>
+          <div className="bmi-calculator-wrapper">
+            <form onSubmit={handleBmiSubmit}>
+              <div className="input-group">
+                <label htmlFor="height">Height (in cm)</label>
+                <input
+                  type="number"
+                  id="height"
+                  placeholder="e.g., 175"
+                  required
+                  value={height}
+                  onChange={(e) => setHeight(e.target.value)}
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="weight">Weight (in kg)</label>
+                <input
+                  type="number"
+                  id="weight"
+                  placeholder="e.g., 70"
+                  required
+                  value={weight}
+                  onChange={(e) => setWeight(e.target.value)}
+                />
+              </div>
+              <button type="submit" className="btn">Calculate BMI</button>
+            </form>
+            <div id="bmi-result" className="bmi-result-area">
+              <h3>Your BMI is:</h3>
+              <p id="bmi-value">{bmi ? bmi : '-'}</p>
+              <p id="bmi-category">{bmiCategory}</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="register">
-        <h3>REGISTER</h3>
-        <form className="register-form">
-          <input type="text" placeholder="Last Name" />
-          <input type="text" placeholder="First Name" />
-          <input type="email" placeholder="Email" />
-          <input type="text" placeholder="Phone" />
-          <button type="submit">Submit</button>
-        </form>
-      </section>
+      <section id="visit">
+            <div className="container visit-content">
+                <div className="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121059.04363249043!2d73.73949818989528!3d18.64121544343135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b82f952ac23d%3A0x6442d1b747065f66!2sPimpri-Chinchwad%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1662804533519!5m2!1sen!2sin" width="100%" height="100%" style={{border:0}} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div className="visit-details">
+                    <h2>VISIT OUR GYM</h2>
+                    <p><i className="fa-solid fa-location-dot"></i> 123 Barbell Street, Pimpri-Chinchwad, Maharashtra</p>
+                    <p><i className="fa-solid fa-phone"></i> (+91) 912 3456789</p>
+                    <div className="social-icons">
+                        <a href="#"><i className="fab fa-facebook-f"></i></a>
+                        <a href="#"><i className="fab fa-instagram"></i></a>
+                        <a href="#"><i className="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      <section className="progress">
-        <h3>Customer's Progress</h3>
-        <div className="gallery">
-          <img src="https://via.placeholder.com/140x180" alt="progress1" />
-          <img src="https://via.placeholder.com/140x180" alt="progress2" />
-          <img src="https://via.placeholder.com/140x180" alt="progress3" />
-          <img src="https://via.placeholder.com/140x180" alt="progress4" />
+      <section id="register-progress">
+        <div className="container register-progress-content">
+          <div className="register-form">
+            <h2>CUSTOMER REGISTER</h2>
+            <form onSubmit={handleRegistrationAndPayment}>
+              <label htmlFor="name">Full Name</label>
+              <input type="text" id="name" value={name} onChange={e => setName(e.target.value)} required /> 
+              
+              <label htmlFor="gender">Gender</label>
+              <input type="text" id="gender" value={gender} onChange={e => setGender(e.target.value)} required />
+              
+              <label htmlFor="email">Email Address</label>
+              <input type="email" id="email" value={email} onChange={e => setEmail(e.target.value)} required />
+              
+              <label htmlFor="contact-no">Contact No.</label>
+              <input type="tel" id="contact-no" value={phone} onChange={e => setPhone(e.target.value)} required />
+              
+              <label htmlFor="packageId">Package/Plan ID</label>
+              <input type="number" id="packageId" placeholder="Enter a number (e.g., 1 for weekly)" value={packageId} onChange={e => setPackageId(e.target.value)} required />
+              
+              <button type="submit" className="btn btn-submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Processing...' : 'Register & Pay'}
+              </button>
+            </form>
+          </div>
+          <div className="customer-progress">
+            <h2>Customer's Progress</h2>
+            <div className="progress-gallery">
+                <img src="https://placehold.co/250x200/cccccc/333333?text=Progress" alt="Customer progress 1"/>
+                <img src="https://placehold.co/250x200/cccccc/333333?text=Progress" alt="Customer progress 2"/>
+                <img src="https://placehold.co/250x200/cccccc/333333?text=Progress" alt="Customer progress 3"/>
+                <img src="https://placehold.co/250x200/cccccc/333333?text=Progress" alt="Customer progress 4"/>
+            </div>
+          </div>
         </div>
       </section>
-
-      <footer className="footer">
-        <p>© 2025 Stamina Fitness Centre. All rights reserved.</p>
+      <footer>
+        <div className="container footer-content">
+            <div className="footer-col">
+              <h4>Info</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Press</a></li>
+              </ul>
+            </div>
+            <div className="footer-col">
+              <h4>Help</h4>
+              <ul>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">Terms of Use</a></li>
+              </ul>
+            </div>
+            <div className="footer-col">
+              <h4>Contacts</h4>
+              <ul>
+                <li><a href="#">Email</a></li>
+                <li><a href="#">Location</a></li>
+                <li><a href="#">Socials</a></li>
+              </ul>
+            </div>
+        </div>
+        <div className="footer-bottom">
+            <p>© 2025 Barbell Nation. All Rights Reserved.</p>
+        </div>
       </footer>
     </>
   );

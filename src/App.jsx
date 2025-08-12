@@ -11,14 +11,16 @@ import "./App.css";
 import CustomerRegistration from "./components/CustomerRegistration";
 import SignUp from "./components/SignUp";
 import Inventory from "./components/Inventory";
+import PaymentSuccessPage from "./components/PaymentSuccessPage";
 
 function App() {
 
   return (
     <Routes>
-      <Route path="/home" index element={<HomePage />} />
+      <Route path="/home" element={<HomePage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
+      <Route path="/payment-success" element={<PaymentSuccessPage />} />
       <Route element={<PrivateRoutes />}>
         <Route path="/" element={<DashboardLayout />}>
           <Route path="dashboard" element={<Dashboard />} />

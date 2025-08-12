@@ -5,10 +5,11 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
+/* --- This is the CORRECT body rule for your homepage --- */
 body {
-  display: flex;
-  background-color: #f4f1f5;
-  height: 100vh;
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    background-color: #f4f4f4;
 }
 
 .container {
@@ -378,4 +379,681 @@ input[type="password"] {
 .logo-box img {
   max-width: 250px;
   height: auto;
+}
+
+/* home page css  */
+/* --- BMI Calculator Section --- */
+#bmi-calculator {
+    background-color: #f4f4f4;
+}
+
+.bmi-calculator-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--text-light);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+#bmi-form .input-group {
+    margin-bottom: 20px;
+}
+
+#bmi-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+#bmi-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: var(--font-body);
+}
+
+#bmi-form button {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 15px;
+    transition: background-color 0.3s ease;
+}
+
+#bmi-form button:hover {
+    background-color: var(--secondary-color);
+}
+
+.bmi-result-area {
+    text-align: center;
+    background-color: #f0f2f5;
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bmi-result-area h3 {
+    color: var(--primary-color);
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+#bmi-value {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    line-height: 1;
+}
+
+#bmi-category {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* --- Responsive adjustment for BMI calculator --- */
+@media (max-width: 768px) {
+    .bmi-calculator-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+/* --- Google Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Teko:wght@500;700&display=swap');
+
+/* --- CSS Variables --- */
+:root {
+    --primary-color: #3B3486;
+    --secondary-color: #7743DB;
+    --light-purple: #C3ACD0;
+    --dark-bg: #2d2d2d;
+    --text-light: #FFFFFF;
+    --text-dark: #333333;
+    --accent-yellow: #FFDD00;
+    --font-heading: 'Teko', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+}
+
+/* --- General & Reset Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    background-color: #f4f4f4;
+    
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: var(--accent-yellow);
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #ffd000;
+}
+
+section {
+    padding: 80px 0;
+}
+
+/* --- Header & Navigation --- */
+header {
+    background-color: var(--text-light);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.logo-nav {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.logo-nav img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo-nav span {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--secondary-color);
+}
+
+.btn-login {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+.btn-login:hover {
+    background-color: var(--secondary-color);
+}
+
+/* --- Hero Section --- */
+#hero {
+    background: linear-gradient(to right, rgba(59, 52, 134, 0.9), rgba(119, 67, 219, 0.7)), url('https://i.ibb.co/hZqY96Y/hero-bg.jpg') no-repeat center center/cover;
+    color: var(--text-light);
+    padding: 100px 0;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.hero-text h1 {
+    font-family: var(--font-heading);
+    font-size: 4.5rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    max-width: 500px;
+}
+
+.hero-logo img {
+    max-width: 350px;
+}
+
+/* --- About Section --- */
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.about-image img {
+    max-width: 400px;
+    border-radius: 10px;
+}
+
+.about-text h2 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--primary-color);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    line-height: 1.8;
+}
+
+/* --- Offer Section --- */
+.offer-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    text-align: center;
+}
+
+.offer-card {
+    background-color: var(--text-light);
+    padding: 40px 20px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+}
+
+.offer-card i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.offer-card h3 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+}
+
+.offer-card p {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+/* --- BMI Calculator Section --- */
+#bmi-calculator {
+    background-color: #f4f4f4;
+}
+
+.bmi-calculator-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--text-light);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+#bmi-form .input-group {
+    margin-bottom: 20px;
+}
+
+#bmi-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+#bmi-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: var(--font-body);
+}
+
+#bmi-form button {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 15px;
+    transition: background-color 0.3s ease;
+}
+
+#bmi-form button:hover {
+    background-color: var(--secondary-color);
+}
+
+.bmi-result-area {
+    text-align: center;
+    background-color: #f0f2f5;
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bmi-result-area h3 {
+    color: var(--primary-color);
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+#bmi-value {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    line-height: 1;
+}
+
+#bmi-category {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* --- Responsive adjustment for BMI calculator --- */
+@media (max-width: 768px) {
+    .bmi-calculator-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* --- Membership Section --- */
+#membership {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%);
+    padding: 120px 0;
+}
+
+#membership .section-title {
+    color: var(--text-light);
+}
+
+.sub-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+}
+
+.plan-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.plan-card {
+    background-color: var(--secondary-color);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+.plan-card:hover {
+    transform: translateY(-10px);
+}
+
+.plan-card.weekly {
+    background-color: var(--text-light);
+    color: var(--primary-color);
+}
+
+.plan-card i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.plan-card.weekly i {
+    color: var(--secondary-color);
+}
+
+.plan-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+.plan-card span {
+    font-weight: bold;
+}
+
+/* --- Coaches Section --- */
+#coaches {
+    background-color: #ececec;
+}
+
+.coach-profiles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.coach-card {
+    background-color: var(--light-purple);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+}
+
+.coach-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--text-light);
+    margin-bottom: 20px;
+}
+
+.coach-card h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+/* --- Visit Section --- */
+#visit {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+}
+#visit .section-title {
+    color: var(--text-light);
+}
+.visit-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+.map iframe {
+    border-radius: 10px;
+    height: 350px;
+}
+
+.visit-details h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+.visit-details p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+.visit-details p i {
+    color: var(--accent-yellow);
+    margin-right: 15px;
+    width: 20px;
+}
+.social-icons {
+    margin-top: 25px;
+}
+.social-icons a {
+    color: var(--text-light);
+    font-size: 1.8rem;
+    margin-right: 20px;
+    transition: color 0.3s ease;
+}
+.social-icons a:hover {
+    color: var(--accent-yellow);
+}
+
+/* --- Register & Progress Section --- */
+.register-progress-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: flex-start;
+}
+.register-form h2, .customer-progress h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.register-form form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+.register-form form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: var(--font-body);
+}
+
+.btn-submit {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+}
+.btn-submit:hover {
+    background-color: var(--secondary-color);
+}
+
+.progress-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+.progress-gallery img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--dark-bg);
+    color: #a0a0a0;
+    padding-top: 60px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 40px;
+}
+.footer-col h4 {
+    color: var(--text-light);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+.footer-col ul {
+    list-style: none;
+}
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+.footer-col ul a {
+    color: #a0a0a0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer-col ul a:hover {
+    color: var(--text-light);
+}
+.footer-bottom {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #444;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-text h1 {
+        font-size: 3.5rem;
+    }
+    .hero-logo img {
+        max-width: 280px;
+        margin-top: 30px;
+    }
+    .about-content {
+        flex-direction: column;
+    }
+    .visit-content, .register-progress-content {
+        grid-template-columns: 1fr;
+    }
+    .map {
+        text-align: center;
+    }
+    .map iframe {
+      width: 100%;
+      height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Simple hide for mobile, can be replaced with hamburger menu JS */
+    }
+    .offer-cards, .coach-profiles {
+        grid-template-columns: 1fr;
+    }
+    .plan-cards {
+        grid-template-columns: 1fr 1fr;
+    }
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+/* --- Header & Navigation --- */
+header {
+    background-color: var(--text-light);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    
+    /* --- Add these properties --- */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
