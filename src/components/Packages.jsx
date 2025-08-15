@@ -30,9 +30,9 @@ export default function Packages() {
     getPackages();
   }, []);
 
-  const handleSubmitPackage = (e) => {
+  const handleSubmitPackage = async (e) => {
     e.preventDefault();
-    dispatch(packageRegisterAsync({ name, duration, amount }));
+    await dispatch(packageRegisterAsync({ name, duration, amount }));
     getPackages();
   };
 

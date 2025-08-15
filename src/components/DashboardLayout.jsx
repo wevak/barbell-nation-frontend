@@ -1,21 +1,38 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { userLogoutRequest } from "../redux/actionCreators/authActionCreator";
+import axios from "axios";
+import { server } from "../redux/store";
 
 export default function DashboardLayout() {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const { token, ownerId } = useSelector((state) => state.auth);
 
-  },[])
+  const [gymName, setGymName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const getOwnerById = async () => {
+    const { data } = await axios.get(`${server}/owners/${ownerId}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    setGymName(data.gymName);
+    setEmail(data.email);
+  };
+
+  useEffect(() => {
+    getOwnerById();
+  }, []);
 
   const handleLogout = () => {
     dispatch(userLogoutRequest());
     navigate("/login");
-  }
+  };
 
   return (
     <div className="container">
@@ -23,8 +40,8 @@ export default function DashboardLayout() {
         <aside className="col-4 sidebar" style={{ marginRight: 20 }}>
           <div className="admin-info">
             <div className="avatar"></div>
-            <h3>Administrator Name</h3>
-            <p>email@gmail.com</p>
+            <h3>{gymName}</h3>
+            <p>{email}</p>
           </div>
           <nav className="menu">
             <ul className="nav flex-column">
@@ -60,7 +77,9 @@ export default function DashboardLayout() {
             <li><Link to="/members">Members</Link></li>
           </ul> */}
           </nav>
-          <button className="btn btn-secondary logout" onClick={handleLogout}>Logout</button>
+          <button className="btn btn-secondary logout" onClick={handleLogout}>
+            Logout
+          </button>
         </aside>
         <main className="col main-content">
           <Outlet /> {/* Renders the matched nested component */}
