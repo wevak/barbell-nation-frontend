@@ -5,7 +5,7 @@ import { server } from "../redux/store";
 import { Button, Form, Modal } from "react-bootstrap";
 
 export default function Inventory() {
-  const { token } = useSelector((state) => state.auth);
+  const { token, ownerId } = useSelector((state) => state.auth);
 
   const [name, setInventoryName] = useState("");
   const [price, setPrice] = useState("");
@@ -33,7 +33,6 @@ export default function Inventory() {
 
   const handleSubmitInventory = async (e) => {
     e.preventDefault();
-    const ownerId = 1; //hard coded
 
     const { data } = await axios.post(
       `${server}/inventory/add`,
@@ -60,7 +59,7 @@ export default function Inventory() {
   const handleInventoryEditSubmit = async () => {
     const { data } = await axios.put(
       `${server}/inventory/${editInventory.inventoryId}`,
-      { ...editInventory, ownerId: 1 },
+      { ...editInventory, ownerId },
       {
         headers: {
           "Content-Type": "application/json",

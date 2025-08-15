@@ -24,8 +24,8 @@ export const packageRegisterFailure = (message) => {
 export const packageRegisterAsync = ({ name, duration, amount }) => {
   return async function (dispatch, getState) {
     try {
-      const { auth: { token } } = getState();
-      const ownerId = 1;                  //hard coded
+      const { auth: { token, ownerId } } = getState();
+      
       dispatch(packageRegisterRequest());
 
       const { data } = await axios.post(

@@ -3,6 +3,7 @@ const initialState = {
   authUser: {},
   fetching: false,
   token: false,
+  ownerId: -1,
   error: "",
 };
 
@@ -21,6 +22,7 @@ export const auth_reducer = (state = initialState, action) => {
         fetching: false,
         authUser: action.payload.user,
         token: action.payload.jwt,
+        ownerId: action.payload.ownerId
       };
 
     case "LOGIN_FAILURE":

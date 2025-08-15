@@ -6,7 +6,7 @@ import { packageRegisterAsync } from "../redux/actionCreators/packageActionCreat
 import { Button, Form, Modal } from "react-bootstrap";
 
 export default function Packages() {
-  const { token } = useSelector((state) => state.auth);
+  const { token, ownerId } = useSelector((state) => state.auth);
 
   const [name, setPlanName] = useState("");
   const [duration, setDuration] = useState("");
@@ -48,7 +48,7 @@ export default function Packages() {
   const handlePackageEditSubmit = async () => {
     const { data } = await axios.put(
       `${server}/packages/${editPackage.packageId}`,
-      { ...editPackage, ownerId: 1 },
+      { ...editPackage, ownerId },
       {
         headers: {
           "Content-Type": "application/json",
