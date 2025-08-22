@@ -14,10 +14,9 @@ export default function Login() {
 
   useEffect(() => {
     if (isAuth.length > 0) {
-      // debugger
       navigate("/dashboard");
     }
-  }, [isAuth]);
+  }, [isAuth, navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -25,46 +24,52 @@ export default function Login() {
   };
 
   return (
-    <div
-      className="d-flex justify-content-center align-items-center"
-      style={{ height: "100vh", width: "100vw" }}
-    >
-      <div className="justify-content-center">
-        <h2>Login Page</h2>
-        <form>
-          <div>
-            <label>Email:</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="mb-3"
-              id="emailInput"
-              placeholder="email@example.com"
-            />
-          </div>
-          <div>
-            <label>Password:</label>
-            <input
-              type="password"
-              className="mb-3"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <button
-            type="submit"
-            className="btn btn-primary"
-            onClick={handleLogin}
-          >
-            Login
-          </button>
-          <Link to="/signup" className="mt-3 align-self-center">
-            Register
-          </Link>
-        </form>
+    // Replaced inline style with a class from your CSS
+    <div className="login-body">
+      {/* Replaced 'justify-content-center' with a class from your CSS */}
+      <div className="login-container"  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {/* Your HTML structure goes here. I've added a wrapper div for a clean look. */}
+        <div className="login-box">
+          <div className="login-form">
+            <h2>Login Page</h2>
+            <form onSubmit={handleLogin}>
+              <div>
+                <label>Email:</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  // The mb-3 class is not in your CSS. Let's rely on your CSS rules.
+                  id="emailInput"
+                  placeholder="email@example.com"
+                />
+              </div>
+              <div>
+                <label>Password:</label>
+                <input
+                  type="password"
+                  // The mb-3 class is not in your CSS.
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <button
+                type="submit"
+                // The btn btn-primary classes are not in your CSS.
+                // Replaced with 'login-form button' and the CSS selector
+                // will target it.
+              >
+                Login
+              </button>
+              <Link to="/signup" className="mt-3 align-self-center">
+                Register
+              </Link>
+            </form>
         <Outlet />
       </div>
+          </div>
+          <img src="src/assets/logo2.png" alt="Barbell Nation Logo" style={{ height: '400px', width: '400px' }} />
+        </div>
     </div>
   );
 }

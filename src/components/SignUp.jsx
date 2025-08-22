@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../assets/FitnessLogo.png";
+import logo from "../assets/logo2.png";
 import { ownerRegisterAsync } from "../redux/actionCreators/authActionCreator";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -107,8 +107,8 @@ export default function SignUp() {
   };
 
   return (
-    <div className="signup-body">
-      <div className="signup-container">
+    <div className="signup-body" >
+      <div className="signup-container" >
         <div className="form-box">
           <h2>Sign-up</h2>
           <form onSubmit={handleFormSubmit}>

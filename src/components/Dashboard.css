@@ -1,0 +1,483 @@
+:root {
+  --sidebar-bg: #1e3a8a; /* Dark blue */
+  --sidebar-active-bg: #254d9c;
+  --card-bg: #ffffff;
+  --main-bg: #f5f6fa;
+  --text-dark: #333;
+  --text-light: #f1f1f1;
+  --text-blue: #1e3a8a;
+  --text-muted: #666;
+  --border-color: #e0e0e0;
+  --progress-color: #4caf50; /* Green */
+}
+
+body {
+  margin: 0;
+  
+  font-family: Arial, sans-serif;
+}
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--main-bg);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 280px;
+  background-color: var(--sidebar-bg);
+  color: var(--text-light);
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  background-color: white; /* Placeholder for your logo */
+}
+
+.admin-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.admin-email {
+  font-size: 0.9em;
+  color: var(--text-light);
+  opacity: 0.7;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.nav-item:hover {
+  background-color: var(--sidebar-active-bg);
+}
+
+.nav-item.active {
+  background-color: var(--card-bg);
+  color: var(--text-blue);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.nav-item.active .nav-icon {
+  color: var(--text-blue);
+}
+
+.nav-icon {
+  font-size: 1.2em;
+  margin-right: 15px;
+  color: var(--text-light);
+}
+
+.sidebar-footer {
+  margin-top: auto;
+}
+
+.logout-button {
+  width: 100%;
+  padding: 15px 20px;
+  background-color: transparent;
+  color: var(--text-light);
+  border: 1px solid var(--text-light);
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.logout-icon {
+  margin-right: 10px;
+}
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  padding: 40px;
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.app-logo-section {
+  display: flex;
+  align-items: center;
+}
+
+.app-logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.app-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  line-height: 1;
+  color: var(--text-dark);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: var(--text-muted);
+}
+
+.feedback-text {
+  font-size: 0.9em;
+}
+
+.notification-icon {
+  font-size: 1.5em;
+  color: var(--text-muted);
+}
+
+/* Grid Layout */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 25px;
+}
+
+.welcome-card {
+  grid-column: 1 / 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+}
+
+.welcome-text {
+  flex: 1;
+}
+
+.welcome-banner {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: var(--text-blue);
+  margin-bottom: 10px;
+}
+
+.welcome-message {
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.welcome-image-placeholder {
+  width: 120px;
+  height: 120px;
+  background-color: #aeb5c7;
+  border-radius: 50%;
+  margin-left: 30px;
+}
+
+.coaches-card {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+.sales-card {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.calendar-card {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+}
+
+.inventory-card {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+/* Card Styling */
+.card {
+  background-color: var(--card-bg);
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.2em;
+  color: var(--text-dark);
+}
+
+.card-options-icon {
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+/* Coaches List */
+.coaches-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.coaches-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.coach-profile-pic {
+  width: 35px;
+  height: 35px;
+  background-color: #aeb5c7;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+/* Sales Card */
+.sales-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+}
+
+.progress-circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.progress-circle svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.progress-circle .bg,
+.progress-circle .progress {
+  fill: none;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.progress-circle .bg {
+  stroke: #e6e6e6;
+}
+
+.progress-circle .progress {
+  stroke: var(--progress-color);
+  stroke-dasharray: 283; /* 2 * PI * r (r=45) */
+  transition: stroke-dashoffset 0.5s ease-in-out;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.8em;
+  font-weight: bold;
+  color: var(--text-dark);
+}
+
+/* Active Members Table */
+.active-members-table {
+  grid-column: 1 / 3;
+  grid-row: 3 / 4;
+  margin-top: 25px;
+  background-color: var(--sidebar-bg); /* Dark blue background */
+  color: var(--text-light);
+}
+
+.active-members-table .card-header {
+  color: var(--text-light);
+}
+
+.table-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.search-bar {
+  position: relative;
+}
+
+.search-bar input {
+  padding: 10px 10px 10px 40px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-light);
+}
+
+.search-bar input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.sort-by {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.members-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.member-item {
+  display: grid;
+  grid-template-columns: 40px 1fr repeat(3, auto) 20px;
+  gap: 15px;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 15px 20px;
+  border-radius: 10px;
+}
+
+.member-profile-pic {
+  width: 40px;
+  height: 40px;
+  background-color: #aeb5c7;
+  border-radius: 50%;
+}
+
+.member-name {
+  font-weight: bold;
+}
+
+.member-details {
+  grid-column: 3 / 6;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.member-details span {
+  font-size: 0.9em;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.member-options-icon {
+  justify-self: end;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .welcome-card {
+    grid-column: 1 / 3;
+  }
+  .active-members-table {
+    grid-column: 1 / 3;
+  }
+  .coaches-card, .sales-card, .calendar-card, .inventory-card {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    padding: 20px;
+  }
+  .sidebar-nav {
+    display: flex;
+    justify-content: center;
+  }
+  .sidebar-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nav-item {
+    padding: 10px 15px;
+    margin: 5px;
+  }
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .welcome-card {
+    grid-column: 1 / 2;
+    flex-direction: column;
+    text-align: center;
+  }
+  .welcome-image-placeholder {
+    margin-top: 20px;
+    margin-left: 0;
+  }
+  .active-members-table {
+    grid-column: 1 / 2;
+  }
+  .table-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
