@@ -5,8 +5,8 @@
 BarbellNation is a custom solution for gym owners built using modern technologies such as React for Frontend and SpringBoot for Backend apis and MySQL for database where owner can manage multiple required operations and get their job easy to handle major of the gym's activities.
 
 # 🚀 Deployed
-## [Barbell Nation Frontend Link](https://barbell-nation-frontend.onrender.com)
-## [Barbell Nation Backend Link](https://barbell-nation-deployment-latest.onrender.com)
+## [Barbell Nation Frontend Deployment Link](https://barbell-nation-frontend.onrender.com)
+## [Barbell Nation Backend Deployment Link](https://barbell-nation-deployment-latest.onrender.com)
 - **Frontend & Backend** deployed on [Render.com](https://render.com/)
 - **Database** deployed on [Neon Tech](https://neon.com/)
 - **Note -** Server remains inactive, to wake up it takes 50-60 seconds for first query
@@ -40,13 +40,13 @@ BarbellNation is a custom solution for gym owners built using modern technologie
 
 # 🚀 Screenshots
 <div>
-    <img src="./assets/new_homescreen.PNG" alt="Home Screen" style="height: 450px; width:450px;"/>
-    <img src="./assets/new_customer_register_public_mode.PNG" alt="Customer Registration Public" style="height: 450px; width:450px;"/>
-    <img src="./assets/new_owner_register.PNG" alt="Owner Register" style="height: 450px; width:450px;"/>
-    <img src="./assets/new_owner_login.PNG" alt="Owner Login" style="height: 450px; width:450px;"/>
-    <img src="./assets/new_dashboard_after_login.PNG" alt="Dashboard" style="height: 450px; width:450px;"/>
-    <img src="./assets/new_packages.PNG" alt="Packages" style="height: 450px; width:450px;"/>
-    <img src="./assets/new_manage_members.PNG" alt="Members" style="height: 450px; width:450px;"/>
-    <img src="./assets/new_customer_registration_by_owner.PNG" alt="Customer Registration by Owner" style="height: 450px; width:450px;"/>
-    <img src="./assets/new_inventory.PNG" alt="Inventory" style="height: 450px; width:450px;"/>
+    <img src="./assets/new_homescreen.PNG" alt="Home Screen" style="height: 500px; width:700px;"/>
+    <img src="./assets/new_customer_register_public_mode.PNG" alt="Customer Registration Public" style="height: 500px; width:700px;"/>
+    <img src="./assets/new_owner_register.PNG" alt="Owner Register" style="height: 500px; width:700px;"/>
+    <img src="./assets/new_owner_login.PNG" alt="Owner Login" style="height: 500px; width:700px;"/>
+    <img src="./assets/new_dashboard_after_login.PNG" alt="Dashboard" style="height: 500px; width:700px;"/>
+    <img src="./assets/new_packages.PNG" alt="Packages" style="height: 500px; width:700px;"/>
+    <img src="./assets/new_manage_members.PNG" alt="Members" style="height: 500px; width:700px;"/>
+    <img src="./assets/new_customer_registration_by_owner.PNG" alt="Customer Registration by Owner" style="height: 500px; width:700px;"/>
+    <img src="./assets/new_inventory.PNG" alt="Inventory" style="height: 500px; width:700px;"/>
 </div>
