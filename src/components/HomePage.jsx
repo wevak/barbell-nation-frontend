@@ -141,7 +141,7 @@ export default function HomePage() {
       <header>
         <nav className="container">
             <a href="#" className="logo-nav">
-                <img src="src/assets/logo2.png" alt="Barbell Nation Small Logo" style={{ height: '100px', width: '120px' }} />
+                <img src="../../assets/logo2.png" alt="Barbell Nation Small Logo" style={{ height: '100px', width: '120px' }} />
                 <span>BARBELL<br />NATION</span>
             </a>
             <ul className="nav-links">
@@ -165,7 +165,7 @@ export default function HomePage() {
                     <a href="#about" className="btn" style={{ backgroundColor: '#3B3486', color: '#fcfbf7ff' }}>Learn More</a>
                 </div>
                 <div className="hero-logo">
-                    <img src="src/assets/logo2.png" alt="Barbell Nation Main Logo"/>
+                    <img src="../../assets/logo2.png" alt="Barbell Nation Main Logo"/>
                 </div>
             </div>
         </section>
@@ -173,7 +173,7 @@ export default function HomePage() {
         <section id="about">
             <div className="container about-content">
                 <div className="about-image">
-                    <img src="src/assets/logo1.png" alt="Man flexing in gym" />
+                    <img src="../../assets/logo1.png" alt="Man flexing in gym" />
                 </div>
                 <div className="about-text">
                     <h2>About<br/>BARBELL NATION GYM</h2>
@@ -236,15 +236,15 @@ export default function HomePage() {
                 <h2 className="section-title" style={{margin:20}}>COACHES</h2>
                 <div className="coach-profiles">
                     <div className="coach-card">
-                        <img src="src/assets/t1.jpg" alt="Coach John" />
+                        <img src="../../assets/t1.jpg" alt="Coach John" />
                         <h3>Coach John</h3>
                     </div>
                     <div className="coach-card">
-                        <img src="src/assets/t4.jpg" alt="Coach Jarrell" />
+                        <img src="../../assets/t4.jpg" alt="Coach Jarrell" />
                         <h3>Coach Jarrell</h3>
                     </div>
                     <div className="coach-card">
-                        <img src="src/assets/t3.jpg" alt="Coach Anne" />
+                        <img src="../../assets/t3.jpg" alt="Coach Anne" />
                         <h3>Coach Anne</h3>
                     </div>
                 </div>
@@ -336,10 +336,10 @@ export default function HomePage() {
           <div className="customer-progress">
             <h2>Customer's Progress</h2>
             <div className="progress-gallery">
-                <img src="src/assets/p1.jpg" alt="Customer progress 1"/>
-                <img src="src/assets/p5.jpg" alt="Customer progress 2"/>
-                <img src="src/assets/p6.jpg" alt="Customer progress 3"/>
-                <img src="src/assets/p2.jpg" alt="Customer progress 4"/>
+                <img src="../../assets/p1.jpg" alt="Customer progress 1"/>
+                <img src="../../assets/p5.jpg" alt="Customer progress 2"/>
+                <img src="../../assets/p6.jpg" alt="Customer progress 3"/>
+                <img src="../../assets/p2.jpg" alt="Customer progress 4"/>
             </div>
           </div>
         </div>

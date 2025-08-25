@@ -68,7 +68,7 @@ export default function Login() {
         <Outlet />
       </div>
           </div>
-          <img src="src/assets/logo2.png" alt="Barbell Nation Logo" style={{ height: '400px', width: '400px' }} />
+          <img src="../../assets/logo2.png" alt="Barbell Nation Logo" style={{ height: '400px', width: '400px' }} />
         </div>
     </div>
   );

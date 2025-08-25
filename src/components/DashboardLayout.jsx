@@ -4,7 +4,7 @@ import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { userLogoutRequest } from "../redux/actionCreators/authActionCreator";
 import axios from "axios";
 import { server } from "../redux/store";
-import logo from "../assets/logo2.png"; 
+import logo from "../../assets/logo2.png"; 
 import "./DashboardLayout.css"; 
 
 export default function DashboardLayout() {

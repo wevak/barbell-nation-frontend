@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../assets/logo2.png";
+import logo from "../../assets/logo2.png";
 import { ownerRegisterAsync } from "../redux/actionCreators/authActionCreator";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
