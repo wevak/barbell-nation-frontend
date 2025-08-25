@@ -27,7 +27,7 @@ export const userLoginAsync = (email, password) => {
       dispatch(userLoginRequest());
 
       const { data } = await axios.post(
-        `${server}/users/signin`,
+        `${import.meta.env.VITE_REACT_APP_API_URL}/users/signin`,
         { email, password },
         {
           headers: {
@@ -69,7 +69,7 @@ export const ownerRegisterAsync = ({ name, email, phone, gender, type, gymName, 
       dispatch(ownerRegisterRequest());
 
       const { data } = await axios.post(
-        `${server}/users/signup`,
+        `${import.meta.env.VITE_REACT_APP_API_URL}/users/signup`,
         { name, email, phone, gender, type, gymName, password },
         {
           headers: {

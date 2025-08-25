@@ -24,7 +24,7 @@ export default function Members() {
     setLoading(true);
     setError(null);
     try {
-      const { data } = await axios.get(`${server}/customers`, {
+      const { data } = await axios.get(`${import.meta.env.VITE_REACT_APP_API_URL}/customers`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -71,7 +71,7 @@ export default function Members() {
   const handleCustomerEditSubmit = async () => {
     try {
       await axios.put(
-        `${server}/customers/${editCustomer.customerId}`,
+        `${import.meta.env.VITE_REACT_APP_API_URL}/customers/${editCustomer.customerId}`,
         { ...editCustomer },
         {
           headers: {

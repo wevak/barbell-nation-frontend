@@ -27,7 +27,7 @@ export const customerRegisterAsync = ({ name, email, gender, phone, packageId })
       dispatch(customerRegisterRequest());
 
       const { data } = await axios.post(
-        `${server}/customers/add`,
+        `${import.meta.env.VITE_REACT_APP_API_URL}/customers/add`,
         { name, email, gender, phone, packageId },
         {
           headers: {

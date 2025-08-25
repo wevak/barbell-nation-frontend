@@ -55,7 +55,7 @@ export default function HomePage() {
 
     try {
       // Step 1: Call your backend to create a Razorpay order.
-      const response = await fetch('http://localhost:8080/payments/create-order', {
+      const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/payments/create-order`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ packageId: Number(packageId) }),
@@ -88,7 +88,7 @@ export default function HomePage() {
             };
 
             // Replaced Redux dispatch with a direct fetch call to the correct endpoint
-            const response = await fetch('http://localhost:8080/payments/add', {
+            const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/payments/add`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(registrationPayload),

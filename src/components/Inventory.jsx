@@ -15,7 +15,7 @@ export default function Inventory() {
   const [inventories, setInventories] = useState([]);
 
   const getInventories = async () => {
-    const { data } = await axios.get(`${server}/inventory`, {
+    const { data } = await axios.get(`${import.meta.env.VITE_REACT_APP_API_URL}/inventory`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -35,7 +35,7 @@ export default function Inventory() {
     e.preventDefault();
 
     const { data } = await axios.post(
-      `${server}/inventory/add`,
+      `${import.meta.env.VITE_REACT_APP_API_URL}/inventory/add`,
       { name, price, quantity, status, ownerId },
       {
         headers: {
@@ -58,7 +58,7 @@ export default function Inventory() {
 
   const handleInventoryEditSubmit = async () => {
     const { data } = await axios.put(
-      `${server}/inventory/${editInventory.inventoryId}`,
+      `${import.meta.env.VITE_REACT_APP_API_URL}/inventory/${editInventory.inventoryId}`,
       { ...editInventory, ownerId },
       {
         headers: {

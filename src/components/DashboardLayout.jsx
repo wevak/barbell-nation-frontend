@@ -19,7 +19,7 @@ export default function DashboardLayout() {
 
   const getOwnerById = async () => {
     try {
-      const { data } = await axios.get(`${server}/owners/${ownerId}`, {
+      const { data } = await axios.get(`${import.meta.env.VITE_REACT_APP_API_URL}/owners/${ownerId}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,

@@ -17,7 +17,7 @@ export default function Packages() {
   const [packages, setPackages] = useState([]);
 
   const getPackages = async () => {
-    const { data } = await axios.get(`${server}/packages`, {
+    const { data } = await axios.get(`${import.meta.env.VITE_REACT_APP_API_URL}/packages`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -47,7 +47,7 @@ export default function Packages() {
 
   const handlePackageEditSubmit = async () => {
     const { data } = await axios.put(
-      `${server}/packages/${editPackage.packageId}`,
+      `${import.meta.env.VITE_REACT_APP_API_URL}/packages/${editPackage.packageId}`,
       { ...editPackage, ownerId },
       {
         headers: {

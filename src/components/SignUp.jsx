@@ -40,7 +40,7 @@ export default function SignUp() {
     }
     setIsSubmitting(true);
     try {
-      const response = await fetch('http://localhost:8080/users/send-otp', {
+      const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/users/send-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
@@ -67,7 +67,7 @@ export default function SignUp() {
     setIsSubmitting(true);
     try {
       // First, verify the OTP
-      const verifyResponse = await fetch('http://localhost:8080/users/verify-otp', {
+      const verifyResponse = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/users/verify-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, otp }),

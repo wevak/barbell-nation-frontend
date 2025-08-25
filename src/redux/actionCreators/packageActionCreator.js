@@ -29,7 +29,7 @@ export const packageRegisterAsync = ({ name, duration, amount }) => {
       dispatch(packageRegisterRequest());
 
       const { data } = await axios.post(
-        `${server}/packages/add`,
+        `${import.meta.env.VITE_REACT_APP_API_URL}/packages/add`,
         { ownerId, name, duration, amount },
         {
           headers: {
