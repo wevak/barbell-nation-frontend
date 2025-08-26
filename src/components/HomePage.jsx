@@ -4,6 +4,15 @@ import { useDispatch } from "react-redux";
 // customerRegisterAsync is no longer needed for this specific flow,
 // but it's kept here in case you use it elsewhere.
 import { customerRegisterAsync } from "../redux/actionCreators/customerActionCreator";
+import logo2 from "../../assets/logo2.png";
+import logo1 from "../../assets/logo1.png";
+import t1 from "../../assets/t1.jpg";
+import t4 from "../../assets/t4.jpg";
+import t3 from "../../assets/t3.jpg";
+import p1 from "../../assets/p1.jpg";
+import p5 from "../../assets/p5.jpg";
+import p6 from "../../assets/p6.jpg";
+import p2 from "../../assets/p2.jpg";
 
 export default function HomePage() {
   // State for BMI Calculator
@@ -141,7 +150,7 @@ export default function HomePage() {
       <header>
         <nav className="container">
             <a href="#" className="logo-nav">
-                <img src="../../assets/logo2.png" alt="Barbell Nation Small Logo" style={{ height: '100px', width: '120px' }} />
+                <img src={logo2} alt="Barbell Nation Small Logo" style={{ height: '100px', width: '120px' }} />
                 <span>BARBELL<br />NATION</span>
             </a>
             <ul className="nav-links">
@@ -165,7 +174,7 @@ export default function HomePage() {
                     <a href="#about" className="btn" style={{ backgroundColor: '#3B3486', color: '#fcfbf7ff' }}>Learn More</a>
                 </div>
                 <div className="hero-logo">
-                    <img src="../../assets/logo2.png" alt="Barbell Nation Main Logo"/>
+                    <img src={logo2} alt="Barbell Nation Main Logo"/>
                 </div>
             </div>
         </section>
@@ -173,7 +182,7 @@ export default function HomePage() {
         <section id="about">
             <div className="container about-content">
                 <div className="about-image">
-                    <img src="../../assets/logo1.png" alt="Man flexing in gym" />
+                    <img src={logo1} alt="Man flexing in gym" />
                 </div>
                 <div className="about-text">
                     <h2>About<br/>BARBELL NATION GYM</h2>
@@ -236,15 +245,15 @@ export default function HomePage() {
                 <h2 className="section-title" style={{margin:20}}>COACHES</h2>
                 <div className="coach-profiles">
                     <div className="coach-card">
-                        <img src="../../assets/t1.jpg" alt="Coach John" />
+                        <img src={t1} alt="Coach John" />
                         <h3>Coach John</h3>
                     </div>
                     <div className="coach-card">
-                        <img src="../../assets/t4.jpg" alt="Coach Jarrell" />
+                        <img src={t4} alt="Coach Jarrell" />
                         <h3>Coach Jarrell</h3>
                     </div>
                     <div className="coach-card">
-                        <img src="../../assets/t3.jpg" alt="Coach Anne" />
+                        <img src={t3} alt="Coach Anne" />
                         <h3>Coach Anne</h3>
                     </div>
                 </div>
@@ -336,10 +345,10 @@ export default function HomePage() {
           <div className="customer-progress">
             <h2>Customer's Progress</h2>
             <div className="progress-gallery">
-                <img src="../../assets/p1.jpg" alt="Customer progress 1"/>
-                <img src="../../assets/p5.jpg" alt="Customer progress 2"/>
-                <img src="../../assets/p6.jpg" alt="Customer progress 3"/>
-                <img src="../../assets/p2.jpg" alt="Customer progress 4"/>
+                <img src={p1} alt="Customer progress 1"/>
+                <img src={p5} alt="Customer progress 2"/>
+                <img src={p6} alt="Customer progress 3"/>
+                <img src={p2} alt="Customer progress 4"/>
             </div>
           </div>
         </div>

@@ -7,6 +7,7 @@ BarbellNation is a custom solution for gym owners built using modern technologie
 # 🚀 Deployed
 ## [Barbell Nation Frontend Deployment Link](https://barbell-nation-frontend.onrender.com)
 ## [Barbell Nation Backend Deployment Link](https://barbell-nation-deployment-latest.onrender.com)
+- **Creds :** Email - 6236vic@gmail.com  Password - 12345@aA
 - **Frontend & Backend** deployed on [Render.com](https://render.com/)
 - **Database** deployed on [Neon Tech](https://neon.com/)
 - **Note -** Server remains inactive, to wake up it takes 50-60 seconds for first query

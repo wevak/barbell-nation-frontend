@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { userLoginAsync } from "../redux/actionCreators/authActionCreator";
 
+import logo2 from "../../assets/logo2.png";
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -68,7 +70,7 @@ export default function Login() {
         <Outlet />
       </div>
           </div>
-          <img src="../../assets/logo2.png" alt="Barbell Nation Logo" style={{ height: '400px', width: '400px' }} />
+          <img src={logo2} alt="Barbell Nation Logo" style={{ height: '400px', width: '400px' }} />
         </div>
     </div>
   );
